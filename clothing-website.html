@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VESPER — New Season</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1510;
+    --rust: #B8532A;
+    --sand: #D4C5A9;
+    --fog: #E8E0D0;
+    --warm-white: #FAF7F3;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* Header */
+  header {
+    background-color: var(--ink);
+    color: var(--cream);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    font-weight: 600;
+  }
+
+  nav {
+    display: flex;
+    gap: 30px;
+  }
+
+  nav a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover {
+    color: var(--rust);
+  }
+
+  .cart-icon {
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+
+  .cart-icon:hover {
+    color: var(--rust);
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, var(--sand) 0%, var(--fog) 100%);
+    padding: 100px 40px;
+    text-align: center;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-button {
+    background-color: var(--rust);
+    color: var(--cream);
+    border: none;
+    padding: 15px 40px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+  }
+
+  .cta-button:hover {
+    background-color: #9a4620;
+    transform: translateY(-2px);
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+  }
+
+  /* Products Section */
+  .products {
+    padding: 80px 40px;
+    background-color: var(--warm-white);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--ink);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background-color: var(--cream);
+    border: 1px solid var(--fog);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-image {
+    background: linear-gradient(135deg, var(--sand), var(--fog));
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+  }
+
+  .product-info {
+    padding: 20px;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .product-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--rust);
+    margin-bottom: 15px;
+  }
+
+  .product-description {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+
+  .add-to-cart-btn {
+    background-color: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 12px 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    font-weight: 600;
+  }
+
+  .add-to-cart-btn:hover {
+    background-color: var(--rust);
+  }
+
+  /* Footer */
+  footer {
+    background-color: var(--ink);
+    color: var(--cream);
+    padding: 40px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  footer p {
+    margin-bottom: 10px;
+  }
+
+  /* Cart Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal-content {
+    background-color: var(--cream);
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid var(--fog);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .close-modal {
+    color: var(--ink);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .close-modal:hover {
+    color: var(--rust);
+  }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+
+  .cart-item {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--fog);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-item:last-child {
+    border-bottom: none;
+  }
+
+  .item-remove {
+    background-color: var(--rust);
+    color: var(--cream);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+  }
+
+  .item-remove:hover {
+    background-color: #9a4620;
+  }
+
+  .cart-total {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+    text-align: right;
+    color: var(--rust);
+  }
+
+  .checkout-btn {
+    background-color: var(--rust);
+    color: var(--cream);
+    border: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+    font-weight: 600;
+  }
+
+  .checkout-btn:hover {
+    background-color: #9a4620;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    nav {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+      width: 95%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">VESPER</div>
+  <nav>
+    <a href="#products">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <span class="cart-icon" onclick="openCart()">🛍️ Cart (<span id="cart-count">0</span>)</span>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>New Season Collection</h1>
+  <p>Discover our curated selection of timeless pieces for the modern wardrobe</p>
+  <button class="cta-button" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">Shop Now</button>
+</section>
+
+<section id="products" class="products">
+  <h2 class="section-title">Featured Collection</h2>
+  <div class="product-grid" id="productGrid">
+    <!-- Products will be generated by JavaScript -->
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2024 VESPER. All rights reserved.</p>
+  <p>Crafted with elegance and care</p>
+</footer>
+
+<!-- Cart Modal -->
+<div id="cartModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeCart()">&times;</span>
+    <h2 class="modal-title">Your Cart</h2>
+    <div id="cartItems"></div>
+    <div class="cart-total">Total: $<span id="cartTotal">0.00</span></div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<script>
+  // Sample Products Data
+  const products = [
+    { id: 1, name: 'Classic Linen Shirt', price: 89.00, emoji: '👔', description: 'Premium linen blend' },
+    { id: 2, name: 'Tailored Trousers', price: 129.00, emoji: '👖', description: 'Impeccable fit' },
+    { id: 3, name: 'Cashmere Sweater', price: 199.00, emoji: '🧶', description: 'Luxurious comfort' },
+    { id: 4, name: 'Silk Blouse', price: 159.00, emoji: '👚', description: 'Elegant design' },
+    { id: 5, name: 'Wool Coat', price: 249.00, emoji: '🧥', description: 'Timeless classic' },
+    { id: 6, name: 'Leather Belt', price: 79.00, emoji: '👗', description: 'Quality craftsmanship' }
+  ];
+
+  let cart = [];
+
+  // Generate Product Grid
+  function generateProducts() {
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = products.map(product => `
+      <div class="product-card">
+        <div class="product-image">${product.emoji}</div>
+        <div class="product-info">
+          <div class="product-name">${product.name}</div>
+          <div class="product-price">$${product.price.toFixed(2)}</div>
+          <div class="product-description">${product.description}</div>
+          <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Add to Cart Function
+  function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    const existingItem = cart.find(item => item.id === productId);
+
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+
+    updateCart();
+    showNotification('Added to cart!');
+  }
+
+  // Update Cart Display
+  function updateCart() {
+    document.getElementById('cart-count').textContent = cart.length;
+    const cartItemsDiv = document.getElementById('cartItems');
+    
+    if (cart.length === 0) {
+      cartItemsDiv.innerHTML = '<p style="text-align: center; color: #999;">Your cart is empty</p>';
+      document.getElementById('cartTotal').textContent = '0.00';
+      return;
+    }
+
+    cartItemsDiv.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div>
+          <strong>${item.name}</strong> x ${item.quantity}
+          <div style="font-size: 13px; color: #999;">$${item.price.toFixed(2)} each</div>
+        </div>
+        <button class="item-remove" onclick="removeFromCart(${item.id})">Remove</button>
+      </div>
+    `).join('');
+
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    document.getElementById('cartTotal').textContent = total.toFixed(2);
+  }
+
+  // Remove from Cart
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCart();
+  }
+
+  // Cart Modal Functions
+  function openCart() {
+    document.getElementById('cartModal').style.display = 'block';
+  }
+
+  function closeCart() {
+    document.getElementById('cartModal').style.display = 'none';
+  }
+
+  // Checkout
+  function checkout() {
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+    alert('Thank you for your order! Proceeding to payment...');
+    cart = [];
+    updateCart();
+    closeCart();
+  }
+
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('cartModal');
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  // Notification Function
+  function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background-color: var(--rust); color: var(--cream); padding: 15px 25px; border-radius: 4px; z-index: 300; animation: slideIn 0.3s ease;';
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 2000);
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', generateProducts);
+</script>
+
+</body>
+</html>
